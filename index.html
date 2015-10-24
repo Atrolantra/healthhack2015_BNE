@@ -1,1 +1,114 @@
-"My Page" 
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8'>
+ 
+<script src='javascripts/jquery-1.9.1.min.js' type='text/javascript'></script>
+<script src='javascripts/bootstrap.min.js' type='text/javascript'></script>
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<!-- This is the data library for js to use -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+ 
+<script src='simple_vis.js' type='text/javascript'></script>
+</head>
+
+
+
+<body>
+    <div class='container' id='main-container'>
+        <div class='content'>
+            <div class='container' style='font: 10px sans-serif;'>
+                <h3>Visualisation of fall data</h3>
+                <div class='row-fluid'>
+                    <div class='remaining-graphs span8'>
+                        <div class='row-fluid'>
+
+                            <div class='pie-graph span4' id='chart_div'>
+                                <h4>Falls per month</h4>
+                            </div>
+
+                        </div>
+
+                        <!-- /other little graphs go here -->
+                        <div class='row-fluid'>
+                            <div class='span12 table-graph'>
+                                <h4>Data</h4>
+                                <table class='table table-hover dc-data-table' id='dc-table-graph'>
+                                    <thead>
+                                        <tr class='header'>
+                                            <th>Month</th>
+                                            <th>Falls</th>
+
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class='remaining-graphs span4'>
+                        <div class='row-fluid'>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+ 
+        </div>
+    </div>
+
+
+
+
+</body>
+
+<!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+
+      // Load the Visualization API and the piechart package.
+      google.load('visualization', '1.0', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.setOnLoadCallback(drawChart);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+        data.addRows([
+          ['Mushrooms', 3],
+          ['Onions', 1],
+          ['Olives', 1],
+          ['Zucchini', 1],
+          ['Pepperoni', 2]
+        ]);
+
+        // Set chart options
+        var options = {'title':'How Much Pizza I Ate Last Night',
+                       'width':600,
+                       'height':400};
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+
+</html>
+
+
