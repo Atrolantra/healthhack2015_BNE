@@ -56,27 +56,5 @@ app.use(function(err, req, res, next) {
   });
 });
 
-// First you need to create a connection to the db
-var con = mysql.createConnection({
-  host: "192.168.59.103",
-  user: "hh-falls",
-  password: "1qaz@WSX",
-  database: "falls"
-});
-
-con.connect(function(err){
-  if(err){
-    console.log('Error connecting to Db');
-    return;
-  }
-  console.log('Connection established');
-});
-
-con.end(function(err) {
-  // The connection is terminated gracefully
-  // Ensures all previously enqueued queries are still
-  // before sending a COM_QUIT packet to the MySQL server.
-});
-
 
 module.exports = app;
