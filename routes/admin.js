@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var swig = require('swig');
-var mysql = require("mysql");
+//var mysql = require("mysql");
 
 
 /* GET users listing. */
@@ -32,11 +32,11 @@ router.get('/', function(req, res, next) {
 });
 
 // First you need to create a connection to the db
-var con = mysql.createConnection({
-  host: "127.0.0.1",
-    user: "hh-falls",
-  password: "1qaz@WSX",
-  database: "falls"
-});
+//var con = mysql.createConnection({
+//  host: "127.0.0.1",
+//    user: "hh-falls",
+//  password: "1qaz@WSX",
+//  database: "falls"
+//});
 
 module.exports = router;
