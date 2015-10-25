@@ -9,4 +9,9 @@ router.get('/', function(req, res, next) {
   res.send(html);
 });
 
+router.get('/user', function(req, res, next) {
+
+});
+
 module.exports = router;
+
