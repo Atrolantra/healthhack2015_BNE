@@ -1,0 +1,23 @@
+<!doctype html>
+
+<html>
+  
+  <head>
+    <title>New Page</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  </head>
+  
+  <body>
+    <div class="container">
+      <h1>Fall Risk Alert</h1>
+    </div>
+    <div class="container">Hello, this message is to let you know that the fall risk status for 'your friend' has changed to<p></p> HIGH
+      <p></p>This may be a good time to checkin and ensure they are eating well, and book into their doctor to review their medications.</p>
+    <a class="btn btn-primary">Click here for more information</a>
+    </div>
+  </body>
+
+</html>
