@@ -1,0 +1,174 @@
+<!doctype html>
+
+<html>
+  
+  <head>
+    <title>New Page</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  </head>
+  
+  <body>
+    <div class="container">
+      <div class="navbar navbar-default">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+            </button>
+            <a href="#" class="navbar-brand">!Fall</a>
+          </div>
+          <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li class="active">
+                <a href="#">Open</a>
+              </li>
+              <li>
+                <a href="#">Risk</a>
+              </li>
+              <li>
+                <a href="#">New</a>
+              </li>
+              <li>
+                <a href="#">Population</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <table class="table table-hover">
+				<thead>
+					<tr>
+						<th>
+							#
+						</th>
+						<th>
+							Client
+						</th>
+						<th>
+							Event time
+						</th>
+						<th>
+							Status
+						</th>
+						<th>
+							Last Contact
+						</th>
+						<th>
+							Summary
+						</th>
+						
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							1
+						</td>
+						<td>
+							B040
+						</td>
+						<td>
+							01/04/2015
+						</td>
+						<td>
+							Open
+						</td>
+						<td>
+							01/04/2015
+						</td>
+						<td>
+							<input type="text" class="form-control">
+						</td>
+					</tr>
+					<tr class="active">
+						<td>
+							1
+						</td>
+						<td>
+							UR2
+						</td>
+						<td>
+							01/04/2015
+						</td>
+						<td>
+							Open
+						</td>
+						<td>
+							01/04/2015
+						</td>
+						<td>
+							<input type="text" class="form-control">
+						</td>
+					</tr>
+					<tr class="success">
+						<td>
+							2
+						</td>
+						<td>
+							URX
+						</td>
+						<td>
+							02/04/2015
+						</td>
+						<td>
+							Open
+						</td>
+						<td>
+							01/04/2015
+						</td>
+						<td>
+							<input type="text" class="form-control">
+						</td>
+					</tr>
+					<tr class="warning">
+						<td>
+							3
+						</td>
+						<td>
+							T3Po
+						</td>
+						<td>
+							03/06/2015
+						</td>
+						<td>
+							Closed
+						</td>
+						<td>
+							01/04/2015
+						</td>
+						<td>
+							Alarm, Fall, Ambulance, 
+						</td>
+					</tr>
+					<tr class="danger">
+						<td>
+							4
+						</td>
+						<td>
+							T2d2
+						</td>
+						<td>
+							04/06/2015
+						</td>
+						<td>
+							Call
+						</td>
+						<td>
+							01/04/2015
+						</td>
+						<td>
+							Alarm, Ambulance, VM
+						</td>
+					</tr>
+				</tbody>
+			</table>
+    </div>
+    
+  </body>
+
+</html>
