@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html lang='en'>
 <head>
-<meta charset='utf-8'>
+  <meta charset='utf-8'>
  
-<script src='javascripts/jquery-1.9.1.min.js' type='text/javascript'></script>
-<script src='javascripts/bootstrap.min.js' type='text/javascript'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js' type='text/javascript'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js' type='text/javascript'></script>
 
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
-<!-- Latest compiled JavaScript -->
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <!-- Latest compiled JavaScript -->
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-<!-- This is the data library for js to use -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
- 
-<script src='simple_vis.js' type='text/javascript'></script>
+  <!-- This is the data library for js to use -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
+
+
 </head>
+
 
 
 
@@ -31,27 +34,16 @@
                     <div class='remaining-graphs span8'>
                         <div class='row-fluid'>
 
-                            <div class='pie-graph span4' id='chart_div'>
-                                <h4>Falls per month</h4>
+                            <div class='pie-graph span4' id='chart'>
+                                <h4>Falls by hour</h4>
+                            </div>
+                            <div class='pie-graph span4' id='chart2'>
+                                <h4>Falls by month</h4>
                             </div>
 
                         </div>
 
-                        <!-- /other little graphs go here -->
-                        <div class='row-fluid'>
-                            <div class='span12 table-graph'>
-                                <h4>Data</h4>
-                                <table class='table table-hover dc-data-table' id='dc-table-graph'>
-                                    <thead>
-                                        <tr class='header'>
-                                            <th>Month</th>
-                                            <th>Falls</th>
 
-                                        </tr>
-                                    </thead>
-                                </table>
-                            </div>
-                        </div>
 
                     </div>
 
@@ -70,7 +62,6 @@
 
 
 </body>
-
 <!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
@@ -80,34 +71,48 @@
 
       // Set a callback to run when the Google Visualization API is loaded.
       google.setOnLoadCallback(drawChart);
+      google.setOnLoadCallback(drawChart2);
 
-      // Callback that creates and populates a data table,
-      // instantiates the pie chart, passes in the data and
-      // draws it.
-      function drawChart() {
-
-        // Create the data table.
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Topping');
-        data.addColumn('number', 'Slices');
-        data.addRows([
-          ['Mushrooms', 3],
-          ['Onions', 1],
-          ['Olives', 1],
-          ['Zucchini', 1],
-          ['Pepperoni', 2]
-        ]);
-
-        // Set chart options
-        var options = {'title':'How Much Pizza I Ate Last Night',
-                       'width':600,
-                       'height':400};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
+      function drawChart() { 
+        // grab the CSV 
+        $.get("falls per hour of day.csv", function(csvString) {
+          // transform the CSV string into a 2-dimensional array 
+          var arrayData = $.csv.toArrays(csvString, {onParseValue: $.csv.hooks.castToScalar});
+          // this new DataTable object holds all the data 
+          var data = new google.visualization.arrayToDataTable(arrayData);
+          // this view can select a subset of the data at a time 
+          var view = new google.visualization.DataView(data); view.setColumns([0,1]);
+          var options = { title: "Plot of falls by month", 
+                          width: 1000, 
+                          height: 500, 
+                          hAxis: {title: "Hour of the day (24h time)", minValue: data.getColumnRange(0).min, maxValue: data.getColumnRange(0).max}, 
+                          vAxis: {title: data.getColumnLabel(1), minValue: data.getColumnRange(1).min, maxValue: data.getColumnRange(1).max}, 
+                          legend: 'none' };
+          var chart = new google.visualization.ColumnChart(document.getElementById('chart')); chart.draw(view, options);
+        }); 
       }
+
+      function drawChart2() { 
+        // grab the CSV 
+        $.get("falls per month.csv", function(csvString) {
+          // transform the CSV string into a 2-dimensional array 
+          var arrayData = $.csv.toArrays(csvString, {onParseValue: $.csv.hooks.castToScalar});
+          // this new DataTable object holds all the data 
+          var data = new google.visualization.arrayToDataTable(arrayData);
+          // this view can select a subset of the data at a time 
+          var view = new google.visualization.DataView(data); view.setColumns([0,1]);
+          var options = { title: "Plot of falls by month", 
+                          width: 1000, 
+                          height: 500, 
+                          hAxis: {title: "Month of the year", minValue: data.getColumnRange(0).min, maxValue: data.getColumnRange(0).max}, 
+                          vAxis: {title: data.getColumnLabel(1), minValue: data.getColumnRange(1).min, maxValue: data.getColumnRange(1).max}, 
+                          legend: 'none' };
+          var chart2 = new google.visualization.ColumnChart(document.getElementById('chart2')); chart2.draw(view, options);
+        }); 
+      }
+
     </script>
+
 
 </html>
 
