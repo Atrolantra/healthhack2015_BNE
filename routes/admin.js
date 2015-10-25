@@ -33,7 +33,7 @@ router.get('/', function(req, res, next) {
 
 // First you need to create a connection to the db
 var con = mysql.createConnection({
-  host: "192.168.59.103",
+  host: "127.0.0.1",
   user: "hh-falls",
   password: "1qaz@WSX",
   database: "falls"
